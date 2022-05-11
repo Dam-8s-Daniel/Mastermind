@@ -20,6 +20,8 @@ LOWERLIMIT = 0
 UPPERLIMIT = 7
 MAXDIGITS = 4
 
+numOfGuesses = 0
+
 """
 GetNums
 No params
@@ -32,8 +34,7 @@ def GetNums():
     print("Correct Answers:" + str(randomNumList))
     return randomNumList
 
-def main():
-    numOfGuesses = 0
+def guessing(numOfGuesses):
     while numOfGuesses < 10:
 
         if numOfGuesses == 0:
@@ -54,6 +55,29 @@ def main():
             i += 1
 
         numOfGuesses += 1
+
+def main():
+    # numOfGuesses = 0
+    # while numOfGuesses < 10:
+    #
+    #     if numOfGuesses == 0:
+    #         randomNumList = GetNums()
+    #
+    #     guesses = []
+    #     print(f"You are on round {numOfGuesses + 1} of 10 guesses")
+    #
+    #     i = 0
+    #     while i < 4:
+    #         print(f"Enter a number for slot # {i + 1}: ")
+    #         val = input()
+    #         int_val = int(val)
+    #         if i < LOWERLIMIT or i > UPPERLIMIT:
+    #             print("Enter a number between 0 and 7")
+    #             continue
+    #         guesses.append(val)
+    #         i += 1
+    #
+    #     numOfGuesses += 1
 
 
         print(f"Your guess: {guesses}")
