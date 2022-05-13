@@ -1,0 +1,48 @@
+{% extends "base.jinja2" %}
+
+{%  block content %}
+<form action="submit" method="POST">
+
+  <div class="form-row">
+{% for i in range(max_digits) %}
+    <div class="col" padding="20px">
+      <input type="number" class="form-control" name="{{ i + 1 }}" placeholder="Digit#{{ i + 1 }}">
+  </div>
+{% endfor %}
+  <button type="submit" value="submit guess">Submit</button>
+  </div>
+</form>
+
+<br/>
+
+
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Round</th>
+        <th>Guess</th>
+        <th>Feedback</th>
+        <th>Remaining Attempts</th>
+    </tr>
+    <tbody>
+    {% for i in range(round) %}
+    <tr>
+        <td>{{ loop.index0 + 1 }}</td>
+        <td>
+            {% for num in guesses[i] %}
+                {{ num }}
+                {% endfor %}
+        </td>
+        <td>{{ responses[i] }}</td>
+        <td>{{ max_attempts - loop.index0 - 1 }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<form action="/restart" method="GET">
+    <button type="submit">Restart</button>
+</form>
+
+
+{% endblock %}
