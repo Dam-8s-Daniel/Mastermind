@@ -1,0 +1,47 @@
+{% extends "base.jinja2" %}
+
+{% block content %}
+
+    </br>
+    <html>
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
+        <p>
+          Games played: {{ games_played }}
+       </p>
+        <p>
+           Wins: {{ wins }} ({{ wins_percent }}%)
+       </p>
+      <p>
+          Losses: {{ losses }}
+       </p>
+
+        <body>
+            <canvas id="myChart" max-width="50" max-height="50"></canvas>
+            <script>
+            var ctx = document.getElementById('myChart').getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
+                    datasets: [{
+                        label: 'Games won on guess attempts',
+                        data: {{ guess_distribution }},
+                        backgroundColor: [
+                            'rgba(54, 162, 235, 0.2)',
+                        ],
+                        borderColor: [
+                            'rgba(54, 162, 235, 1)',
+                        ],
+                        borderWidth: 0
+                    }]
+                },
+
+            });
+            </script>
+        </body>
+    </html>
+
+
+
+{% endblock %}

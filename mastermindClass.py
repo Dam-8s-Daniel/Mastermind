@@ -19,7 +19,9 @@ class Mastermind:
         self.status = 2  # 0 = loser || 1 = winner || 2 = game ongoing
         self.wins = 0
         self.losses = 0
+        self.games_played = 1
         self.current_answer = []
+        self.guess_distribution = [0,0,0,0,0,0,0,0,0,0]
         self.guessing_allowed = True
 
     def set_lower_limit(self, new_limit: int):
@@ -53,6 +55,26 @@ class Mastermind:
         random_num_list = [int(x) for x in random_num_list]
         self.current_answer = random_num_list
 
+    """
+    func: check_winner
+    params: correct_num_and_location: int, returned by check_nums
+    return: 0 = loser || 1 = winner || 2 = game ongoing 
+    """
+    def check_winner(self, correct_num_and_location: int) -> int:
+        if correct_num_and_location == self.max_digits:
+            self.guessing_allowed = False
+            self.status = 1
+            self.wins += 1
+            self.guess_distribution[len(self.guesses) - 1] += 1
+            return self.status
+        elif len(self.guesses) == 10:
+            self.guessing_allowed = False
+            self.status = 0
+            self.losses += 1
+            return self.status
+        else:
+            return self.status
+
     def check_nums(self) -> int:
         guess = self.guesses[-1]
         correct_number = False
@@ -67,32 +89,13 @@ class Mastermind:
         if correct_num_and_location == self.max_digits:
             self.add_response_history("Winner!")
         elif correct_num_and_location:
-            self.add_response_history("You guessed one or more correct numbers and they're in the right place!")
+            self.add_response_history("You guessed one or more correct numbers that are in the right place!")
         elif correct_number:
             self.add_response_history("You guessed one or more correct numbers, but they're in the wrong place!")
         else:
             self.add_response_history("Your guess is off the mark. ALL numbers are incorrect")
 
-        return correct_num_and_location
-
-    """
-    func: check_winner
-    params: correct_num_and_location: int, returned by check_nums
-    return: 0 = loser || 1 = winner || 2 = game ongoing 
-    """
-    def check_winner(self, correct_num_and_location: int) -> int:
-        if correct_num_and_location == self.max_digits:
-            self.guessing_allowed = False
-            self.status = 1
-            self.wins += 1
-            return self.status
-        elif len(self.guesses) == 10:
-            self.guessing_allowed = False
-            self.status = 0
-            self.losses += 1
-            return self.status
-        else:
-            return self.status
+        return self.check_winner(correct_num_and_location)
 
     def store_guess_attempt(self, numbers: list):
         numbers = [int(x) for x in numbers]
@@ -122,6 +125,7 @@ class Mastermind:
         self.responses = []
         self.current_answer = []
         self.guessing_allowed = True
+        self.games_played += 1
 
 
 
