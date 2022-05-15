@@ -47,10 +47,19 @@ def submit():
         nums.append(request.form.get(f"{i}"))
 
     game.store_guess_attempt(nums)
-    correct_num_and_location = game.check_nums()
-    game.check_winner(correct_num_and_location)
+    game.check_nums()
 
     return redirect(url_for("play"))
+
+@app.route("/stats")
+def display_stats():
+    return render_template("stats.jinja2",
+                           guess_distribution=game.guess_distribution,
+                           games_played=game.games_played,
+                           wins=game.wins,
+                           wins_percent=round((game.wins/game.games_played) * 100, 1),
+                           losses=game.losses,
+                           )
 
 
 @app.route("/restart", methods=["POST", "GET"])
@@ -76,9 +85,6 @@ def set_upper_limit():
 def set_max_digits():
     max_digit = request.form["maxDigit"]
     game.set_max_digits(int(max_digit))
-
-
-
 
 
 if __name__ == "__main__":

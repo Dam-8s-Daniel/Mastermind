@@ -29,9 +29,9 @@
     {% for i in range(round) %}
     <tr>
         <td>{{ loop.index0 + 1 }}</td>
-        <td>
+        <td >
             {% for num in guesses[i] %}
-                {{ num }}
+                 {{ num }}
                 {% endfor %}
         </td>
         <td>{{ responses[i] }}</td>
@@ -39,9 +39,9 @@
     </tr>
     {% endfor %}
 </table>
-
+<br/>
 <form action="/restart" method="GET">
-    <button type="submit">Restart</button>
+    <button type="submit">new game</button>
 </form>
 
 
