@@ -6,7 +6,7 @@
   <div class="form-row">
 {% for i in range(max_digits) %}
     <div class="col" padding="20px">
-      <input type="number" class="form-control" name="{{ i + 1 }}" placeholder="Digit#{{ i + 1 }}">
+      <input type="number" class="form-control" name="{{ i + 1 }}" placeholder="Digit#{{ i + 1 }}" required>
   </div>
 {% endfor %}
   <button type="submit" value="submit guess">Submit</button>
@@ -39,10 +39,31 @@
     </tr>
     {% endfor %}
 </table>
-<br/>
-<form action="/restart" method="GET">
-    <button type="submit">new game</button>
-</form>
 
+
+<br/>
+
+    <form action="/restart" method="GET">
+    <button class="newGame" type="submit">new game</button>
+</form>
+    <br/>
+<form action="/hint" method="GET">
+    <button type="submit">Hint</button>
+</form>
+    {% if hint %}
+        <p>Hint: {{hint}}</p>
+    {% endif %}
+
+{% if status == 1 %}
+    <div class="meme">
+        <img src='./static/img/winnerMeme.jpg'></img>
+    </div>
+
+{% elif status == 0 %}
+    <div class="meme">
+        <p> Answer: {{ answer }}</p>
+        <img src='./static/img/loserMeme.jpg'></img>
+    </div>
+{% endif %}
 
 {% endblock %}

@@ -1,5 +1,5 @@
 """
-mastermindClass.py contains the logic on running the mastermind game.
+mastermindClass.py contains the logic on running the mastermind game using the Class Mastermind.
 """
 
 import requests
@@ -23,6 +23,8 @@ class Mastermind:
         self.current_answer = []
         self.guess_distribution = [0,0,0,0,0,0,0,0,0,0]
         self.guessing_allowed = True
+        self.asked_for_hints = 1
+        self.hint = None
 
     def set_lower_limit(self, new_limit: int):
         self.lower_limit = new_limit
@@ -39,7 +41,7 @@ class Mastermind:
     def add_response_history(self, guess: str):
         self.responses.append(guess)
 
-    def check_can_guess(self) -> bool:
+    def is_guessing_allowed(self) -> bool:
         if len(self.guesses) < self.max_attempts:
             self.guessing_allowed = True
         else:
@@ -55,12 +57,14 @@ class Mastermind:
         random_num_list = [int(x) for x in random_num_list]
         self.current_answer = random_num_list
 
-    """
-    func: check_winner
-    params: correct_num_and_location: int, returned by check_nums
-    return: 0 = loser || 1 = winner || 2 = game ongoing 
-    """
+
     def check_winner(self, correct_num_and_location: int) -> int:
+        """
+        Updates the game's status and, if the player wins, the number of tries that the player took.
+        :param correct_num_and_location: number of correct numbers that are in the correct
+        location, which is returned by check_nums
+        :return: 0 = loser || 1 = winner || 2 = game ongoing
+        """
         if correct_num_and_location == self.max_digits:
             self.guessing_allowed = False
             self.status = 1
@@ -75,7 +79,12 @@ class Mastermind:
         else:
             return self.status
 
-    def check_nums(self) -> int:
+    def check_nums(self):
+        """
+        Checks the last list of numbers for correctness in the guesses list.
+        Adds to the response list one of three feedback based on the correctness of the numbers.
+        :return: Returns the status of the game (ongoing, loser, winner) using the check_winner method.
+        """
         guess = self.guesses[-1]
         correct_number = False
         correct_num_and_location = 0
@@ -98,33 +107,47 @@ class Mastermind:
         return self.check_winner(correct_num_and_location)
 
     def store_guess_attempt(self, numbers: list):
+        """
+        :param numbers: list of numbers that the user entered as a guess
+        :return: None
+        """
         numbers = [int(x) for x in numbers]
         self.guesses.append(numbers)
 
-    def get_hint(self, num: int):
+    def get_hint(self):
+        """
+        Allows a user to get a hint when requested.
+        :return: One of three possible answers depending on how many times a hint has been asked.
+        """
         # Returns the first number as a hint
-        if num == 1:
-            return self.current_answer[0]
+        if self.asked_for_hints == 1:
+            self.hint = f"The first number is {self.current_answer[0]}"
 
         # Returns the last number as a hint
-        elif num == 2:
-            return self.current_answer[-1]
+        elif self.asked_for_hints == 2:
+            self.hint = f"The last number is {self.current_answer[-1]}"
 
-        # Return the numbers, but in the incorrect order
+        # Return the correct numbers, but in the incorrect order
         else:
             answer_copy = copy.copy(self.current_answer)
             random.shuffle(answer_copy)
-            return answer_copy
+            self.hint = f"The numbers are {answer_copy}"
+
+        self.asked_for_hints += 1
 
     def restart(self):
+        """
+        Gets new random answer and clears history of guesses and their responses.
+        Updates the number of games that a player has played by 1.
+        :return: None
+        """
         self.set_current_answer()
-        self.lower_limit = 0
-        self.upper_limit = 7
-        self.max_digits = 4
         self.guesses = []
         self.responses = []
-        self.current_answer = []
         self.guessing_allowed = True
+        self.asked_for_hints = 1
+        self.hint = None
+        self.status = 2
         self.games_played += 1
 
 

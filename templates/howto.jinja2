@@ -2,7 +2,61 @@
 
 {% block content %}
 <html>
-<h1>How to play page</h1>
+<Header></Header>
+
+<body>
+    <div class="howto">
+        <h4>About</h4>
+        <p>
+            Before the world was thinking about five-letter words for the game Wordle, there was Mastermind, a board
+            game based on guessing a sequence of colors. This online variation of the classic board game will be using
+            numbers in place of colors. The goal of the game is to guess the correct sequence of numbers in 10 or fewer
+            tries.
+        </p>
+
+        <h4>Game play</h4>
+        <p>
+            The computer will generate four random numbers in the range of 0 - 7.
+            Two or more numbers can be the same (i.e. 1, 1, 1, 1).
+            Enter in your guess in the provided text boxes and press submit.
+            Any numbers will be accepted, so be careful of what you enter!
+            The computer will show you your guess and feedback. The feedback will come in one of three messages:
+                <ol>
+                    <li>"You guessed one or more correct numbers that are in the right place!"</li>
+                    <li>"You guessed one or more correct numbers, but they're in the wrong place!"</li>
+                    <li>"Your guess is off the mark. ALL numbers are incorrect."</li>
+                </ol>
+
+            Enter in a new set of numbers based on the feedback.
+            Find the sequence in 10 rounds or fewer.
+        </p>
+
+        <h4>Strategy</h4>
+        <p>
+          There are numerous strategies that have been extensively studied over the years.
+            You can check them out <a href="https://en.wikipedia.org/wiki/Mastermind_(board_game)#Best_strategies
+            _with_four_pegs_and_six_colors">here.</a>
+        </p>
+
+
+        <h4>Other notes</h4>
+        <p>
+            <ul>
+                <li>
+                    Navigating away from the page will not reset your game.
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    Pressing "new game" on the play page will result in resetting the game with a new sequence of
+                    numbers. This action will add towards the number of game you have played.
+                </li>
+            </ul>
+        </p>
+    </div>
+</body>
+
+
 </html>
 
 {%endblock content%}
