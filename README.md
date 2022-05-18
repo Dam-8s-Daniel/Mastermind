@@ -1,7 +1,6 @@
 # Mastermind
-***
 
-##Background
+## Background 
 Mastermind is a classic board game in which a player guesses the correct four-color sequence, determined by another player,
 in 10 tries or fewer. After each round, the computer gives feedback on the correctness of the guess. The original board 
 game version is played with eight different colored pegs for the sequences, and a black peg and a white peg to 
@@ -13,7 +12,7 @@ number generator from random.org. You can read more on how random.org generate n
 [faq](https://www.random.org/faq/#:~:text=RANDOM.ORG%20uses%20radio%20receivers,order%20to%20affect%20the%20generator).
 The second major change is that the program will give only one item of feedback, instead of up to four. 
 
-##Game Play
+## Game Play
 The goal of the game is to guess the correct four-digit sequence. To start, 
 navigate to the "play" page. The computer will generate four random numbers in the range of 0 - 7.
 Two or more numbers can be the same (i.e. The sequence can be  1, 1, 1, 1).
@@ -29,11 +28,11 @@ That concludes the first round of guessing. Find the sequence in 10 rounds or fe
 Three hints are available if needed. The first hint gives the first number. The second hint gives the last number.
 The last hint gives all the numbers, but in random order. 
 ***
-##Play the latest release
-####Online 
+## Play the latest release
+#### Online 
 The latest release can be played at https://mmindgame.herokuapp.com/play (v.XXXX last update May 17, 2022).
 
-####Download it to your computer
+#### Download it to your computer
 
 Steps:
 1. Download Python 3 if you don't have it already. You can download the latest version for your machine 
@@ -67,7 +66,7 @@ Alternatively, download the files in a zip file and extract them to a directory.
 8. Deactivate the virtual environment using the command ```deactivate``` once you're done playing!
 
 ***
-##Code Structure
+## Code Structure
 The latest implementation of Mastermind is a Flask application. The basic structure of a Flask app has two directories,
 static and templates, and an entry point file called app.py.
 The static directory has three directories that hold the following file types: css, img, and js.  The templates directory 
@@ -95,7 +94,7 @@ A player can interact with the class through endpoints as described below.
 
 ```POST /setlimits``` - Changes the range of expected numbers
 
-##Completed extensions
+## Completed extensions
 1. Hints button gives three hints without penalty. The first hint gives the first number. The second hint 
 gives the last number. The last hint gives all the numbers but in random order. Hints were the first extension that
 was made due to the difficulty of the game.
@@ -105,13 +104,13 @@ keeps track of wins, losses, and the percent of wins.
 4. An image at the end of each game is produced depending on the outcome of the game. One image is a picture of my dog,
 Luna. 
 
-##Backlog
+## Backlog
 - [ ] Create sessions so that each player can play and record their own stats
 - [ ] Login page
 - [ ] Connect database to record player stats
 
 
-##Backlog Description
+## Backlog Description
 1. The current implementation does not store sessions, and this has major implications. The first is
 that any request to the server isn't tied to any other request or a particular user. This means
 that there may be multiple threads of Mastermind being run on a sever, but a request to the
