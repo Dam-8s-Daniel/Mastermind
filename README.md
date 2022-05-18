@@ -30,7 +30,7 @@ The last hint gives all the numbers, but in random order.
 ***
 ## Play the latest release
 #### Online 
-The latest release can be played at https://mmindgame.herokuapp.com/play (v.XXXX last update May 17, 2022).
+The latest release can be played at https://mmindgame.herokuapp.com/play (v.1.0.0, May 17, 2022).
 
 #### Download it to your computer
 
