@@ -48,7 +48,7 @@ def play():
 @app.route('/submit', methods=["POST"])
 def submit():
     """
-    Updates Mastermind game with user input after checking for
+    Updates Mastermind game with user input
     :return: redirects to play endpoint
     """
     if game.is_guessing_allowed() is False:

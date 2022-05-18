@@ -14,14 +14,14 @@ class Mastermind:
         self.lower_limit = 0  # lowest number that a digit can be
         self.upper_limit = 7  # highest number that a digit can be
         self.max_digits = 4
-        self.guesses = []
-        self.responses = []
+        self.guesses = []  # list of player guesses each round
+        self.responses = []  # list of responses to player guesses each round
         self.status = 2  # 0 = loser || 1 = winner || 2 = game ongoing
         self.wins = 0
         self.losses = 0
         self.games_played = 1
         self.current_answer = []
-        self.guess_distribution = [0,0,0,0,0,0,0,0,0,0]
+        self.guess_distribution = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
         self.guessing_allowed = True
         self.asked_for_hints = 1
         self.hint = None
