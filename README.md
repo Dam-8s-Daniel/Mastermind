@@ -67,7 +67,8 @@ Alternatively, download the files in a zip file and extract them to a directory.
 
 ***
 ## Code Structure
-The latest implementation of Mastermind is a Flask application. The basic structure of a Flask app has two directories,
+The latest implementation of Mastermind is a Flask application, which will support the operations of the game made in Python.
+The basic structure of a Flask app has two directories,
 static and templates, and an entry point file called app.py.
 The static directory has three directories that hold the following file types: css, img, and js.  The templates directory 
 are the webpages made in jinja2. Instead of having a home page, the main entry point is the "play" page. 
